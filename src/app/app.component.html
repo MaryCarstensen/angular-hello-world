@@ -1,4 +1,146 @@
+
+<h1>Angular</h1>
+<favorite></favorite>
+<br>
+<app-courses></app-courses>
+<br>
+<app-authors></app-authors>
+<br>
+<h2>capitalization opgave</h2>
+<title-case></title-case>
+
+
+<!-- panel with input property binding and output event binding -->
+<br>
+<favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChanged($event)"></favorite>
+<bootstrap-panel>
+  <ng-container class="heading">Heading</ng-container>
+  <div class="body">
+    <h2>Body</h2>
+    <p>Some content here...</p>
+  </div>
+</bootstrap-panel>
+
+<!-- directives ngIf adds or removes from the DOM -->
+<br>
+<div>Directives using *ngIf, elements will not be in the DOM when not shown</div>
+<div *ngIf="courses.length > 0; then coursesList else noCourses"></div>
+  <ng-template #coursesList>
+    List of courses
+  </ng-template>
+  <ng-template #noCourses>
+    No courses yet
+  </ng-template>
+
+<!-- hidden attribute to hide part of the page -->
+<br>
+<br>
+<div>Using hidden attribute, DOM still has element</div>
+<div [hidden]="courses.length == 0">
+  List of courses
+</div>
+<div [hidden]="courses.length > 0">
+  No courses yet
+</div>
+
+
+<!-- ngSwitch -->
+<br>
+<div>directives using *ngSwitchcase </div>
+<ul class="nav nav-pills">
+  <li [class.active]="viewMode == 'map'"><a (click)="viewMode = 'map'">Map View</a></li>
+  <li [class.active]="viewMode == 'list'"><a (click)="viewMode = 'list'">List View</a></li>
+</ul>
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Map View Content</div>
+  <div *ngSwitchCase="'list'">List View Content</div>
+  <div *ngSwitchDefault>Otherwise</div>
+</div>
+
+
+<!-- ngFor and change detection and track by (track by only with large list that has performance problems)-->
+<br>
+<button (click)="onAdd()">Add</button>
+<button (click)="loadCourses()">Load Courses</button>
+<ul>
+  <li *ngFor="let course of courses; even as isOdd; trackBy: trackCourse">
+     {{ course.name }} <span *ngIf="isOdd">(ODD)</span>
+     <button (click)="onRemove(course)">Remove</button>
+     <button (click)="onChange(course)">Update</button>
+  </li>
+</ul>
+
+
+<!-- ng style attribute directive (style binding to .css is best if more than one style) -->
+<!-- ngStyle is the same as the three lines of code before it -->
+<br>
+<br>
+<button
+  [style.backgroundColor]="canSave ? 'blue': 'gray'"
+  [style.color]="canSave ? 'white': 'black'"
+  [style.fontWeight]="canSave ? 'bold': 'normal'"
+  [ngStyle]="{
+    'backgroundColor': canSave ? 'blue': 'gray',
+    'color': canSave ? 'white': 'black',
+    'fontWeight': canSave ? 'bold': 'normal'
+  }"
+>
+  Save
+</button>
+
+<!-- examples for traversing and catching null
+  First span is not rendered in Dom if object is null
+  Safe Traversal Operator (second line and empty span is rendered in DOM if object null)-->
+<br>
+<br>
+<span *ngIf="task.assignee">{{ task.assignee.name }}</span>
+<span>{{ task.assignee?.name }}</span>
+
+
+
+<!-- custom directives -->
+<br>
+<br>
+<input type="text" [appInputFormat]="'uppercase'">
+<!-- above can be seen the "" with a '' inside, this means that the contents are a string and not a property of the appCompnent -->
+
+<!------------------- zippy component exercise ----------------------------------->
+<br>
+<br>
+<!-- code with Mosh -->
+<zippy title="Shipping Details">
+  Shipping Details Content
+</zippy>
+<zippy title="Billing Details">
+  Billing Details Content
+</zippy>
+  <!-- my zippy
+    <app-zippy title="Shipping Details">
+    <ng-container class="heading" >Shipping Details</ng-container>
+    <div class="body">
+      <p>Shipping Details Content</p>
+    </div>
+  </app-zippy>
+  <app-zippy title="Billing Details">
+    <ng-container class="heading" >Billing Details</ng-container>
+    <div class="body">
+      <p>Billing Details Content</p>
+    </div>
+  </app-zippy> -->
+
+
+  <!-- section 7 -->
+  <!-- contact form -->
+  
+<contact-form></contact-form>
+
+<br><br>
+
+<course-form></course-form>
+
 <!--The content below is only a placeholder and can be replaced.-->
+<br>
+<br>
 <div style="text-align:center">
   <h1>
     Welcome to {{title}}!

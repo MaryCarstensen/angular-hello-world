@@ -1,0 +1,43 @@
+
+<form #f="ngForm" (ngSubmit)="submit(f.value)" >
+  <div class="form-group">
+      <label for="courseName">Course Name</label>
+      <input required minlength="5" ngModel name="name" #name="ngModel" id="courseName" type="text" class="form-control">
+        <div *ngIf="name.touched && !name.valid" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                Name is required
+            </div>
+            <div *ngIf="name.errors.minlength">
+                Name should be minimum {{ name.errors.minlength.requiredLength }} characters
+            </div>
+            <div *ngIf="name.errors.pattern">
+                Name doesn't match the pattern
+            </div>
+        </div>
+  </div>
+  <div class="form-group">
+      <label for="category">Category</label>
+      <select required ngModel name="category" #category="ngModel" id="category" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+          <!-- <option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option> This is complex binding involving the id and name seperately-->
+      </select>
+        <div *ngIf="category.touched && category.invalid" class="alert alert-danger">
+        Category field is required.
+        </div>
+      
+    </div>    
+    <div class="checkbox">    
+        <label for="moneyBackGuarantee">
+          <input ngModel name="hasMoneyBackGuarantee" type="checkbox" id="moneyBackGuarantee">
+          30-day money-back guarantee
+        </label>
+    </div>
+  <button class="btn btn-primary" [disabled]="!f.valid">Create</button>
+  <p>
+      {{ f.value | json }}
+    <!-- {{ f.value }} Json object that represents the values entered into the form and we can use the pipe to see how it looks formatted as json-->
+  </p>
+</form>
+
+  
