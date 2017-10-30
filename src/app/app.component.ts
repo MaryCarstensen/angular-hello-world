@@ -56,5 +56,5 @@ export class AppComponent {
     return course ? course.id : undefined;
   }
 
-  
+
 }

@@ -14,7 +14,6 @@ export class ZippyComponent {
     this.isExpanded = !this.isExpanded;
   }
 
-  
   // my solution
   // isOpen: boolean;
   // @Output('change') change = new EventEmitter(); // alias will keep the component of the API stable
@@ -23,5 +22,7 @@ export class ZippyComponent {
   //   this.isOpen = !this.isOpen;
   //   this.change.emit({ newValue: this.isOpen});
   // }
+
+  // new branch
 
 }
