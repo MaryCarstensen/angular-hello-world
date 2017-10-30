@@ -20,7 +20,7 @@ export class UsernameValidators {
         return new Promise((resolve, reject) => {
             // example of asynchronous operation
             setTimeout(() => {
-                if (control.value === 'Mary') {
+                if (control.value === 'Mosh') {
                     resolve({ shouldBeUnique: true });
                 } else {
                     resolve(null);
