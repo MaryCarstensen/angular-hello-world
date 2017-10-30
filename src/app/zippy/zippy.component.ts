@@ -14,6 +14,7 @@ export class ZippyComponent {
     this.isExpanded = !this.isExpanded;
   }
 
+  
   // my solution
   // isOpen: boolean;
   // @Output('change') change = new EventEmitter(); // alias will keep the component of the API stable
