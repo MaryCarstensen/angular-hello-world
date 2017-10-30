@@ -1,0 +1,20 @@
+{{ title }}
+<!-- original -->
+<!-- <span 
+  class="glyphicon"
+  [class.glyphicon-star]="isFavorite"
+  [class.glyphicon-star-empty]="!isFavorite"
+  (click)="onClick()"
+  ></span> -->
+
+  <!-- ng class -example of attribute directive to modify attributes of an existing DOM element 
+    class binding -->
+<span 
+  class="glyphicon"
+  [ngClass]="{
+    'glyphicon-star': isFavorite,
+    'glyphicon-star-empty': !isFavorite
+  }"
+  (click)="onClick()"
+
+></span>

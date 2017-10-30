@@ -1,0 +1,89 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <div ngModelGroup="contact" #contact="ngModelGroup">
+    <div *ngIf="contact.valid">...TODO...all validation errors for this group</div>
+      <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input 
+            required 
+            minlength="3" 
+            maxlength="10" 
+            pattern="banana" 
+            ngModel 
+            name="firstName" 
+            #firstName="ngModel" 
+            (change)="log(firstName)" 
+            id="firstName" 
+            type="text" 
+            class="form-control">
+          <div 
+            class="alert alert-danger" 
+            *ngIf="firstName.touched && !firstName.valid">
+            <div *ngIf="firstName.errors.required">
+              First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+              First Name should be minimum {{ firstName.errors.minlength.requiredLength }} characters
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+              First Name doesn't match the pattern
+            </div>
+          </div>
+        </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea 
+      ngModel 
+      name="comment" 
+      id="comment" 
+      cols="30" 
+      rows="10" 
+      class="form-control"></textarea>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ngModel name="isSubscribed">Subscribe to mailing list</label></div>
+      <div class="form-group">
+        <label for="contactMethod">Contact Method</label>
+        <!-- first one is a drop down -->
+        <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+            <!-- <option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option> This is complex binding involving the id and name seperately-->
+        </select>      
+          <!-- second one is a "multiple select" showing array of options selected via string interpolation   -->
+        <select multiple ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+            <!-- <option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option> This is complex binding involving the id and name seperately-->
+          </select>
+      </div>
+      <!-- Hard code radio buttons re-using contactMethod to show value in browser
+      <div class="radio">
+          <label for="">
+            <input ngModel type="radio" name="contactMethod" value="1">
+            Email
+          </label>
+      </div>
+      <div class="radio">
+          <label for="">
+              <input ngModel type="radio" name="contactMethod" value="2">
+              Phone
+          </label>
+      </div> -->
+
+      <!-- Contact records rendered automatically, re-using the contactMethods list on contact-form.component.ts -->
+      <div *ngFor="let method of contactMethods" class="radio">
+          <label for="">
+            <input ngModel type="radio" name="contactMethod" [value]="method.id">
+            {{ method.name }}
+          </label>
+      </div>
+     
+      <p>
+          {{ f.value | json }}
+        <!-- {{ f.value }} Json object that represents the values entered into the form and we can use the pipe to see how it looks formatted as json-->
+      </p>
+  <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form>

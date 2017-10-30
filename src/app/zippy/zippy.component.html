@@ -1,0 +1,36 @@
+
+<!-- my attempt
+   <div class="panel panel-default" (click)="sectionOpenClose()">
+    <div class="panel-heading">
+      <ng-content select=".heading"></ng-content>
+      <div class="glyphicon" [ngClass]="{
+        'glyphicon-menu-up': isOpen,
+        'glyphicon-menu-down': !isOpen
+        }">
+      </div>
+    </div>
+    <div class="panel-body" [hidden]="!isOpen">
+      <ng-content select=".body" ></ng-content>
+    </div>
+  </div> -->
+
+  <!-- Code with Mosh -->
+
+  <div class="zippy">
+    <div 
+      class="zippy-heading"
+      [class.expanded]="isExpanded"
+      (click)="toggle()"
+      >
+      {{ title }}
+      <span class="glyphicon"
+        [ngClass]="{
+          'glyphicon-menu-up': isExpanded,
+          'glyphicon-menu-down': !isExpanded
+        }"
+      ></span>
+    </div>
+    <div *ngIf="isExpanded" class="zippy-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
