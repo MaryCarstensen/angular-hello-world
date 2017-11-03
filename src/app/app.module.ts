@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { TitleCaseComponent } from './title-case.component';
 import { FavoriteComponent } from './favorite/favorite.component';
@@ -21,6 +22,7 @@ import { CourseFormComponent } from './course-form/course-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [ // Add all components, pipes and directives that are part of this module here
@@ -41,12 +43,14 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     NewCourseFormComponent,
     ChangePasswordFormComponent,
     ChangePasswordFormComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
     CoursesService,
